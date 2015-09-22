@@ -2,6 +2,7 @@
     "isDev": true,
     "http": {
         "baseUrl": "http://localhost:8000",
+		"address": "localhost",
         "port": 8000,
         "key": "./fakekeys/privatekey.pem",
         "cert": "./fakekeys/certificate.pem"
