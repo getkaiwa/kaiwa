@@ -395,6 +395,6 @@ clientApp.on('ready', function () {
 //    cert: fs.readFileSync(config.http.cert)
 //}, app).listen(config.http.port);
 
-app.listen(config.http.port, function () {
+app.listen(config.http.port, config.http.address, function () {
     console.log('Kaiwa running at: ' + config.http.baseUrl);
 });
