@@ -2090,6 +2090,10 @@ rgba(0,0,0,0.7)
     z-index: 299;
     display: block;
     margin: 0;
+    line-height: 26px;
+    font-size: 42px;
+    color: white;
+    cursor: pointer;
   }
   .toggle-sidebar-label svg {
     display: block;
