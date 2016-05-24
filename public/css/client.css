@@ -2075,6 +2075,7 @@ rgba(0,0,0,0.7)
   #menu {
     left: -230px;
     transition: .5s;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
   }
   .conversation header .name {
     padding-left: 40px;

@@ -153,6 +153,7 @@ module.exports = {
         var url = (page.charAt(0) === '/') ? page.slice(1) : page;
         app.state.markActive();
         app.history.navigate(url, true);
+        $('#toggle-sidebar').prop("checked", false);
     },
     renderPage: function (view, animation) {
         var container = $('#pages');
