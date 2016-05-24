@@ -9,6 +9,7 @@ var ContactListGroupItem = require('../views/contactListGroupItem');
 var MUCListItem = require('../views/mucListItem');
 var CallView = require('../views/call');
 var ContactGroup = require('../models/contactgroup');
+var ContactGroups = require('../models/contactgroups');
 
 var ContactRequestItem = require('../views/contactRequest');
 
@@ -45,10 +46,7 @@ module.exports = HumanView.extend({
         $('body').removeClass('aux');
         this.renderAndBind();
         
-        var contactGroups = new (Backbone.Collection.extend({
-    		type: 'contactgroups',
-    		model: ContactGroup,
-        }))();
+        var contactGroups = new ContactGroups();
 
         this.listenTo(me.contacts, "add", function (model) {
             var targetGroup = contactGroups.find(function (cg) { return cg.name == (model.groups[0] ? model.groups[0] : "Ungrouped"); });
@@ -60,12 +58,12 @@ module.exports = HumanView.extend({
         });
 
         this.listenTo(me.contacts, "remove", function (model) {
-			var targetGroup = contactGroups.find(function (cg) { return cg.name == (model.groups[0] ? model.groups[0] : "Ungrouped"); });
-			if(targetGroup) {
-				targetGroup.contacts.remove(model);
-				if(targetGroup.contacts.length === 0)
-					contactGroups.remove(targetGroup);
-			}
+            var targetGroup = contactGroups.find(function (cg) { return cg.name == (model.groups[0] ? model.groups[0] : "Ungrouped"); });
+            if(targetGroup) {
+                targetGroup.contacts.remove(model);
+                if(targetGroup.contacts.length === 0)
+                    contactGroups.remove(targetGroup);
+            }
         });
 
         this.renderCollection(contactGroups, ContactListGroupItem, this.$('#roster nav'));

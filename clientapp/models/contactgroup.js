@@ -1,7 +1,6 @@
 /*global app*/
 "use strict";
 
-var async = require('async');
 var Contacts = require('./contacts');
 var HumanModel = require('human-model');
 
