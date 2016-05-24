@@ -1,4 +1,4 @@
-/*global app, client*/
+/*global app, client, me, SERVER_CONFIG*/
 "use strict";
 
 var async = require('async');
@@ -117,9 +117,9 @@ module.exports = BaseCollection.extend({
                 toRemove.push(this.models[i]);
             }
 
-            for (var i = 0; i < app.mucInfos.length; i++) {
+            for (var j = 0; j < app.mucInfos.length; j++) {
 
-                var mucInfo = app.mucInfos[i];
+                var mucInfo = app.mucInfos[j];
                 var muc = this.get(mucInfo.jid);
                 if (muc) {
                     muc.name = mucInfo.name;

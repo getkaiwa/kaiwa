@@ -520,7 +520,7 @@ button.secondary:hover:not(:disabled) {
   width: 230px;
   background-color: #e5e5e5;
   color: #565656;
-  z-index: 300;
+  z-index: 302;
   -webkit-backface-visibility: hidden;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -899,6 +899,24 @@ button.secondary:hover:not(:disabled) {
   padding-left: 14px;
   height: 23px;
 }
+#roster li.group label {
+  cursor: pointer;
+}
+#roster li.group:hover {
+  background: inherit;
+  color: inherit;
+}
+#roster .group input[type="checkbox"] {
+  display: none;
+}
+#roster .group input[type="checkbox"]:checked ~ ul {
+  display: none;
+}
+#roster .group ul {
+  padding: 0;
+  margin: -3px -10px;
+  margin-right: -15px;
+}
 #bookmarks .wrap {
   padding-left: 14px;
   height: 23px;
@@ -1174,7 +1192,7 @@ button.secondary:hover:not(:disabled) {
   position: fixed;
   right: 0px;
   left: 230px;
-  z-index: 302;
+  z-index: 300;
   transition: none;
   -webkit-transition: none;
 }
@@ -2044,4 +2062,40 @@ rgba(0,0,0,0.7)
 }
 #topbar.connected #me {
   display: block;
+}
+.toggle-sidebar-label {
+  display: none;
+}
+@media (max-width: 600px) {
+  #pages,
+  .conversation header,
+  .conversation .chatBox {
+    left: 0;
+  }
+  #menu {
+    left: -230px;
+    transition: .5s;
+  }
+  .conversation header .name {
+    padding-left: 40px;
+  }
+  #menu #organization #orga_name {
+    margin-left: 40px;
+  }
+  .toggle-sidebar-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 6px;
+    z-index: 299;
+    display: block;
+    margin: 0;
+  }
+  .toggle-sidebar-label svg {
+    display: block;
+    fill: white;
+  }
+  #toggle-sidebar:checked ~ #menu {
+    left: 0;
+  }
 }

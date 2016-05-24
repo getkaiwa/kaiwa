@@ -145,11 +145,11 @@ module.exports = BasePage.extend({
         } else if (e.which === 38) { // Up arrow
 
             if (this.$autoComplete.css('display') != 'none') {
-                var count = this.$autoComplete.find(">li").length;
-                var oldPos = this.autoCompletePos;
-                this.autoCompletePos = (oldPos - 1) < 1 ? count : oldPos - 1;
+                var count1 = this.$autoComplete.find(">li").length;
+                var oldPos1 = this.autoCompletePos;
+                this.autoCompletePos = (oldPos1 - 1) < 1 ? count1 : oldPos1 - 1;
 
-                this.$autoComplete.find(">:nth-child(" + oldPos + ")").removeClass('selected');
+                this.$autoComplete.find(">:nth-child(" + oldPos1 + ")").removeClass('selected');
                 this.$autoComplete.find(">:nth-child(" + this.autoCompletePos + ")").addClass('selected');
 
             }
@@ -163,11 +163,11 @@ module.exports = BasePage.extend({
         } else if (e.which === 40) { // Down arrow
 
             if (this.$autoComplete.css('display') != 'none') {
-                var count = this.$autoComplete.find(">li").length;
-                var oldPos = this.autoCompletePos;
-                this.autoCompletePos = (oldPos + 1) > count ? 1 : oldPos + 1;
+                var count2 = this.$autoComplete.find(">li").length;
+                var oldPos2 = this.autoCompletePos;
+                this.autoCompletePos = (oldPos2 + 1) > count2 ? 1 : oldPos2 + 1;
 
-                this.$autoComplete.find(">:nth-child(" + oldPos + ")").removeClass('selected');
+                this.$autoComplete.find(">:nth-child(" + oldPos2 + ")").removeClass('selected');
                 this.$autoComplete.find(">:nth-child(" + this.autoCompletePos + ")").addClass('selected');
             }
             else if (this.editMode) {
@@ -353,13 +353,13 @@ module.exports = BasePage.extend({
             }
 
             if (messageDay !== this.lastDate) {
-                var dayDivider = $(templates.includes.dayDivider({day_name: messageDay}));
-                this.staydown.append(dayDivider[0]);
+                var dayDivider1 = $(templates.includes.dayDivider({day_name: messageDay}));
+                this.staydown.append(dayDivider1[0]);
                 this.lastDate = messageDay;
             }
 
-            var isGrouped = model.shouldGroupWith(this.lastModel);
-            if (isGrouped) {
+            var isGrouped1 = model.shouldGroupWith(this.lastModel);
+            if (isGrouped1) {
                 newEl = $(model.partialTemplateHtml);
                 last = this.$messageList.find('li').last();
                 last.find('.messageWrapper').append(newEl);
@@ -378,14 +378,14 @@ module.exports = BasePage.extend({
             var firstEl = this.$messageList.find('li').first();
 
             if (messageDay !== this.firstDate) {
-                var dayDivider = $(templates.includes.dayDivider({day_name: messageDay}));
-                firstEl.before(dayDivider[0]);
-                var firstEl = this.$messageList.find('li').first();
+                var dayDivider2 = $(templates.includes.dayDivider({day_name: messageDay}));
+                firstEl.before(dayDivider2[0]);
+                firstEl = this.$messageList.find('li').first();
                 this.firstDate = messageDay;
             }
 
-            var isGrouped = model.shouldGroupWith(this.firstModel);
-            if (isGrouped) {
+            var isGrouped2 = model.shouldGroupWith(this.firstModel);
+            if (isGrouped2) {
                 newEl = $(model.partialTemplateHtml);
                 first = this.$messageList.find('li').first().next();
                 first.find('.messageWrapper div:first').after(newEl);

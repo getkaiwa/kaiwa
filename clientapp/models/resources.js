@@ -1,3 +1,4 @@
+/*global app, client, me, SERVER_CONFIG*/
 "use strict";
 
 var BaseCollection = require('./baseCollection');

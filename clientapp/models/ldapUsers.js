@@ -1,4 +1,4 @@
-/*global app, client*/
+/*global app, client, $*/
 "use strict";
 
 var BaseCollection = require('./baseCollection');

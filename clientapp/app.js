@@ -1,4 +1,4 @@
-/*global $, app, me, client*/
+/*global $, app, me, client, SERVER_CONFIG*/
 "use strict";
 
 var _ = require('underscore');
