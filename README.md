@@ -1,5 +1,7 @@
 # Kaiwa
 
+**Kaiwa is not maintained anymore. See active forks here: https://github.com/digicoop/kaiwa/network**
+
 Kaiwa is an open source web client for XMPP.  
 Kaiwa is a fork of Otalk, a prototype application created by &yet (https://github.com/otalk for more code).
 
