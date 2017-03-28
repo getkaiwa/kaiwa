@@ -3,6 +3,10 @@
 var crypto = require('crypto');
 
 module.exports.getGravatar = function (jid) {
+    if (!SERVER_CONFIG.gravatarEnabled)
+        return {
+            uri: '/images/user.jpg'
+        };
     var gID = crypto.createHash('md5').update(jid).digest('hex');
     return {
         uri: 'https://gravatar.com/avatar/' + gID + '?s=80&d=mm'

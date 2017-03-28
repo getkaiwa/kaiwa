@@ -10,6 +10,8 @@ var templatizer = require('templatizer');
 var async = require('async');
 var LDAP = require('ldapjs');
 
+config.ldapEnabled = !(!config.ldap || !config.ldap.address || !config.ldap.base);
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -52,9 +54,11 @@ app.get('/sounds/*', function (req, res) {
     res.redirect("./public" + req.baseUrl);
 });
 
+if (config.ldapEnabled) {
+
 function connectLDAP(req, cb) {
 
-    if (!config.ldap || !config.ldap.address || !config.ldap.base) {
+    if (!config.ldapEnabled) {
         cb(true);
         return;
     }
@@ -299,6 +303,8 @@ app.post('/ldap/users/delete', function (req, res) {
     });
 
 });
+
+}
 
 app.get('/oauth/login', function (req, res) {
     res.redirect('https://apps.andyet.com/oauth/authorize?client_id=' + config.andyetAuth.id + '&response_type=token');

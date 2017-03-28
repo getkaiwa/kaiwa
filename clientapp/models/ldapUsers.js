@@ -24,6 +24,7 @@ module.exports = BaseCollection.extend({
     fetch: function (cb) {
         var self = this;
 
+        if(SERVER_CONFIG.ldapEnabled)
         $.post('/ldap/users', ldapUser.ldapData(), function(users) {
             var toRemove = [];
             for ( var i = 0; i < self.models.length; i++) {
@@ -52,6 +53,7 @@ module.exports = BaseCollection.extend({
     addUser: function (id) {
         var self = this;
 
+        if(SERVER_CONFIG.ldapEnabled)
         $.post('/ldap/users/add', ldapUser.ldapData({newUid: id}), function(result) {
             result = JSON.parse(result);
             if (result) {
@@ -62,6 +64,7 @@ module.exports = BaseCollection.extend({
     deleteUser: function (id) {
         var self = this;
 
+        if(SERVER_CONFIG.ldapEnabled)
         $.post('/ldap/users/delete', ldapUser.ldapData({removeUid: id}), function(result) {
             result = JSON.parse(result);
             if (result) {
