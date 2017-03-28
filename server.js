@@ -29,7 +29,7 @@ if (!config.isDev) {
 app.use(xssFilter({ setOnOldIE: true }));
 app.use(helmet.noSniff());
 
-var webappManifest = fs.readFileSync('./public/x-manifest.webapp');
+var webappManifest = fs.readFileSync(__dirname + '/public/x-manifest.webapp');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
