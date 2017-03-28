@@ -54,7 +54,7 @@ RosterVerStorage.prototype = {
     },
     remove: function (jid, cb) {
         cb = cb || function () {};
-        var request = this.transaction('readwrite')['delete'](id);
+        var request = this.transaction('readwrite')['delete'](jid);
         request.onsuccess = function (e) {
             cb(false, request.result);
         };

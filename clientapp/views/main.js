@@ -1,11 +1,15 @@
-/*global $, app, me, client*/
+/*global $, app, me, client, SERVER_CONFIG*/
 "use strict";
 
+var Backbone = require('backbone');
 var HumanView = require('human-view');
 var templates = require('../templates');
 var ContactListItem = require('../views/contactListItem');
+var ContactListGroupItem = require('../views/contactListGroupItem');
 var MUCListItem = require('../views/mucListItem');
 var CallView = require('../views/call');
+var ContactGroup = require('../models/contactgroup');
+var ContactGroups = require('../models/contactgroups');
 
 var ContactRequestItem = require('../views/contactRequest');
 
@@ -41,7 +45,28 @@ module.exports = HumanView.extend({
         $('head').append(templates.head());
         $('body').removeClass('aux');
         this.renderAndBind();
-        this.renderCollection(me.contacts, ContactListItem, this.$('#roster nav'));
+        
+        var contactGroups = new ContactGroups();
+
+        this.listenTo(me.contacts, "add", function (model) {
+            var targetGroup = contactGroups.find(function (cg) { return cg.name == (model.groups[0] ? model.groups[0] : "Ungrouped"); });
+            if(!targetGroup) {
+                targetGroup = new ContactGroup(model.groups[0] ? model.groups[0] : "Ungrouped");
+                contactGroups.add(targetGroup);
+            }
+            targetGroup.contacts.add(model);
+        });
+
+        this.listenTo(me.contacts, "remove", function (model) {
+            var targetGroup = contactGroups.find(function (cg) { return cg.name == (model.groups[0] ? model.groups[0] : "Ungrouped"); });
+            if(targetGroup) {
+                targetGroup.contacts.remove(model);
+                if(targetGroup.contacts.length === 0)
+                    contactGroups.remove(targetGroup);
+            }
+        });
+
+        this.renderCollection(contactGroups, ContactListGroupItem, this.$('#roster nav'));
         this.renderCollection(me.mucs, MUCListItem, this.$('#bookmarks nav'));
         this.renderCollection(me.contactRequests, ContactRequestItem, this.$('#contactrequests'));
 

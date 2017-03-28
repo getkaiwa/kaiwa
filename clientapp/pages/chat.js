@@ -253,13 +253,13 @@ module.exports = BasePage.extend({
             }
 
             if (messageDay !== this.lastDate) {
-                var dayDivider = $(templates.includes.dayDivider({day_name: messageDay}));
-                this.staydown.append(dayDivider[0]);
+                var dayDivider1 = $(templates.includes.dayDivider({day_name: messageDay}));
+                this.staydown.append(dayDivider1[0]);
                 this.lastDate = messageDay;
             }
 
-            var isGrouped = model.shouldGroupWith(this.lastModel);
-            if (isGrouped) {
+            var isGrouped1 = model.shouldGroupWith(this.lastModel);
+            if (isGrouped1) {
                 newEl = $(model.partialTemplateHtml);
                 last = this.$messageList.find('li').last();
                 last.find('.messageWrapper').append(newEl);
@@ -280,12 +280,12 @@ module.exports = BasePage.extend({
             if (messageDay !== this.firstDate) {
                 var dayDivider = $(templates.includes.dayDivider({day_name: messageDay}));
                 firstEl.before(dayDivider[0]);
-                var firstEl = this.$messageList.find('li').first();
+                firstEl = this.$messageList.find('li').first();
                 this.firstDate = messageDay;
             }
 
-            var isGrouped = model.shouldGroupWith(this.firstModel);
-            if (isGrouped) {
+            var isGrouped2 = model.shouldGroupWith(this.firstModel);
+            if (isGrouped2) {
                 newEl = $(model.partialTemplateHtml);
                 first = this.$messageList.find('li').first().next();
                 first.find('.messageWrapper div:first').after(newEl);

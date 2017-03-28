@@ -1,4 +1,4 @@
-/*global, IDBKeyRange*/
+/*global IDBKeyRange*/
 "use strict";
 
 // SCHEMA

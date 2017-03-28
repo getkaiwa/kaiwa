@@ -1,4 +1,4 @@
-/*global app, me, client, URL*/
+/*global app, me, client, URL, $*/
 "use strict";
 
 var _ = require('underscore');
@@ -45,17 +45,17 @@ exports.user = HumanModel.define({
             result = JSON.parse(result);
 
             if (result) {
-                for (var property in userInfos) {
-                    if (userInfos.hasOwnProperty(property) && self[property] !== undefined) {
-                        self[property] = userInfos[property];
+                for (var property1 in userInfos) {
+                    if (userInfos.hasOwnProperty(property1) && self[property1] !== undefined) {
+                        self[property1] = userInfos[property1];
                     }
                 }
             }
             else {
-                for (var property in oldValues) {
-                    if (oldValues.hasOwnProperty(property) && self[property] !== undefined) {
-                        self[property] = '';
-                        self[property] = oldValues[property];
+                for (var property2 in oldValues) {
+                    if (oldValues.hasOwnProperty(property2) && self[property2] !== undefined) {
+                        self[property2] = '';
+                        self[property2] = oldValues[property2];
                     }
                 }
             }

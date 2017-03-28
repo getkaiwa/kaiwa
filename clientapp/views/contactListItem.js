@@ -29,6 +29,7 @@ module.exports = HumanView.extend({
         'click .remove': 'handleRemoveContact'
     },
     render: function () {
+        //console.log(this);
         this.renderAndBind({contact: this.model});
         return this;
     },
@@ -37,7 +38,8 @@ module.exports = HumanView.extend({
             app.navigate('chat/' + encodeURIComponent(this.model.jid));
         }
     },
-    handleRemoveContact: function() {
+    handleRemoveContact: function(e) {
+        e.stopPropagation();
         me.removeContact(this.model.jid);
         if (app.history.fragment === 'chat/' + encodeURIComponent(this.model.jid)) {
             app.navigate('/');

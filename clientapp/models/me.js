@@ -1,4 +1,4 @@
-/*global app, client, URL, me*/
+/*global app, client, URL, me, SERVER_CONFIG, Resample*/
 "use strict";
 
 var HumanModel = require('human-model');
@@ -154,6 +154,9 @@ module.exports = HumanModel.define({
 
         if (!jid) return;
 
+        //console.log(this.contacts);
+        //console.log(jid);
+
         return this.contacts.get(jid.bare) ||
             this.mucs.get(jid.bare) ||
             this.calls.findWhere('jid', jid);
@@ -177,8 +180,10 @@ module.exports = HumanModel.define({
         var self = this;
         client.removeRosterItem(jid, function(err, res) {
             var contact = self.getContact(jid);
-            self.contacts.remove(contact.jid);
-            app.storage.roster.remove(contact.storageId);
+            if(contact) {
+                self.contacts.remove(contact.jid);
+                app.storage.roster.remove(contact.storageId);
+            }
         });
     },
     load: function () {

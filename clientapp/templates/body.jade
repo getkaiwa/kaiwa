@@ -3,7 +3,12 @@ body
     p Update available!
     button.primary.upgrade Upgrade
   #wrapper
+    input(type="checkbox")#toggle-sidebar
+    label(for="toggle-sidebar").toggle-sidebar-label
+      | &equiv;
     aside#menu
+      label(for="toggle-sidebar").toggle-sidebar-label
+        | &equiv;
       section#organization
         span#orga_name
         a(href="/", class="button secondary settings")
